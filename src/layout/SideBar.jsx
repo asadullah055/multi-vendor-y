@@ -2,19 +2,26 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { BiLogInCircle } from "react-icons/bi";
+import { useSelector } from "react-redux";
 import { getNavs } from "./../navigation/index";
 
 const SideBar = ({ showSidebar, setShowSidebar }) => {
   const [allNav, setAllNav] = useState([]);
+  const { role } = useSelector((state) => state.auth);
   const { pathname } = useLocation();
   useEffect(() => {
-    const navs = getNavs("admin");
+    const navs = getNavs(role);
     setAllNav(navs);
-  }, []);
+  }, [role]);
   //   console.log(allNav);
   return (
     <div>
-      <div onClick={() => setShowSidebar(false)} className={`fixed duration-200 ${!showSidebar ? 'invisible' : 'visible'} w-screen h-screen bg-[#22292f80] top-0 left-0 z-10`}></div>
+      <div
+        onClick={() => setShowSidebar(false)}
+        className={`fixed duration-200 ${
+          !showSidebar ? "invisible" : "visible"
+        } w-screen h-screen bg-[#22292f80] top-0 left-0 z-10`}
+      ></div>
       <div
         className={`w-[260px] fixed bg-[#283046] z-50 top-0 h-screen shadow-[0_0_15px_0_rgb(34_41_47_/_5%)] transition-all ${
           showSidebar ? "left-0" : "-left-[260px] lg:left-0"

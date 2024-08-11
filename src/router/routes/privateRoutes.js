@@ -1,8 +1,4 @@
+import { sellerRoutes } from "./sellerRoutes";
+import { adminRoutes } from './adminRoutes';
 
-import adminRoutes from './adminRoutes';
-import sellerRoutes from './sellerRoutes';
-
-export const privetRoute = [
-    ...adminRoutes,
-    ...sellerRoutes
-]
+export const privetRoute = [...adminRoutes,...sellerRoutes];
